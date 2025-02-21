@@ -3,6 +3,8 @@ const app = express();
 const dotenv = require("dotenv");
 const port = process.env.PORT || 3000;
 const mongoose = require("mongoose");
+const CategoryRoute = require("./routes/category");
+const RestaurantRoute = require("./routes/restaurant");
 dotenv.config();
 
 mongoose
@@ -14,5 +16,12 @@ mongoose
     return console.log(err);
   });
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use("/api/category", CategoryRoute);
+app.use("/api/restaurant", RestaurantRoute);
+
 app.get("/", (req, res) => res.send("Hello World!"));
-app.listen(port, () => console.log(`Server is running on port ${port}`));
+app.listen(process.env.PORT || 3000, () =>
+  console.log(`Server is running on port ${process.env.PORT}`)
+);

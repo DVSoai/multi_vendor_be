@@ -39,7 +39,7 @@ module.exports = {
         categories.push(moreCategory);
       }
 
-      req.status(2001).json(categories);
+      res.status(201).json(categories);
     } catch (error) {
       res.status(500).json({ status: false, message: error.message });
     }

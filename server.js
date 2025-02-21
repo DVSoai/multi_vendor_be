@@ -5,6 +5,8 @@ const port = process.env.PORT || 3000;
 const mongoose = require("mongoose");
 const CategoryRoute = require("./routes/category");
 const RestaurantRoute = require("./routes/restaurant");
+const FoodRouter = require("./routes/food");
+
 dotenv.config();
 
 mongoose
@@ -20,6 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/category", CategoryRoute);
 app.use("/api/restaurant", RestaurantRoute);
+app.use("/api/foods", FoodRouter);
 
 app.get("/", (req, res) => res.send("Hello World!"));
 app.listen(process.env.PORT || 3000, () =>

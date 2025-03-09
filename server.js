@@ -11,6 +11,7 @@ const AuthRoute = require("./routes/auth");
 const UserRoute = require("./routes/user");
 const AddressRoute = require("./routes/address");
 const CartRoute = require("./routes/cart");
+const OrderRoute = require("./routes/order");
 
 dotenv.config();
 
@@ -33,6 +34,7 @@ app.use("/api/foods", FoodRouter);
 app.use("/api/rating", RatingRouter);
 app.use("/api/address", AddressRoute);
 app.use("/api/cart", CartRoute);
+app.use("api/orders", OrderRoute);
 
 app.get("/", (req, res) => res.send("Hello World!"));
 app.listen(process.env.PORT || 3000, () =>

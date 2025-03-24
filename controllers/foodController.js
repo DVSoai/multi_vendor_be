@@ -96,7 +96,7 @@ module.exports = {
         { $project: { __v: 0 } },
       ]);
       if (foods.length === 0) {
-        res.status(200).json([]);
+        return res.status(200).json([]);
       }
       res.status(200).json(foods);
     } catch (error) {
@@ -146,6 +146,25 @@ module.exports = {
         ]);
       }
       res.status(200).json(foods);
+    } catch (error) {
+      res.status(500).json({ status: false, message: error.message });
+    }
+  },
+
+  getAllFoods: async (req, res) => {
+    try {
+      const foods = await Food.find({});
+      res.status(200).json(foods);
+    } catch (error) {
+      res.status(500).json({ status: false, message: error.message });
+    }
+  },
+
+  getAllFoodsByCode: async (req, res) => {
+    const code = req.params.code;
+    try {
+      const foodList = await Food.find({ code: code });
+      res.status(200).json(foodList);
     } catch (error) {
       res.status(500).json({ status: false, message: error.message });
     }

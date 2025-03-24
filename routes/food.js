@@ -4,7 +4,8 @@ const foodController = require("../controllers/foodController");
 const { verifyTokenVendor } = require("../middleware/verifyToken");
 
 router.post("/", verifyTokenVendor, foodController.addFood);
-
+// router.get("/all", foodController.getAllFoods);
+router.get("/byCode/:code", foodController.getAllFoodsByCode);
 router.get("/recommendation/:code", foodController.getRandomFood);
 router.get("/:id", foodController.getFoodById);
 

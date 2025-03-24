@@ -36,7 +36,9 @@ module.exports = {
     const id = req.params.id;
 
     try {
-      const restaurant = await Restaurant.findById(id);
+      const restaurant = await Restaurant.findById(id, {
+        __v: 0,
+      });
       res.status(200).json(restaurant);
     } catch (error) {
       res.status(500).json({ status: false, message: error.message });
